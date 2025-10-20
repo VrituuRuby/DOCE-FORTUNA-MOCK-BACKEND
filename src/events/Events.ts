@@ -1,9 +1,8 @@
-import { log } from '../utils.js';
-import { dataHistory } from '../data/index.js';
+import { log } from "../utils.js";
 
-import { Game } from '../game/Game.js';
+import { Game } from "../game/Game.js";
 
-import * as t from './types.js';
+import * as t from "./types.js";
 
 export class Events {
   private static connect(game: Game, args: t.TConnectArgs): t.TEventResponse {
@@ -11,7 +10,7 @@ export class Events {
       const data = game.config(args);
 
       return {
-        type: 'CONFIG',
+        type: "CONFIG",
         data: {
           currencyIsoCode: data.currencyIsoCode,
           player: data.player,
@@ -19,22 +18,28 @@ export class Events {
         },
       };
     } catch (e) {
-      log(e, 'FgRed');
-      return { type: 'CONNECT_ERROR', data: { errorCode: t.EErrors.CONNECT_ERROR } };
+      log(e, "FgRed");
+      return {
+        type: "CONNECT_ERROR",
+        data: { errorCode: t.EErrors.CONNECT_ERROR },
+      };
     }
   }
 
-  private static placeBet(game: Game, { bet }: { bet: number }): t.TEventResponse {
+  private static placeBet(
+    game: Game,
+    { bet }: { bet: number }
+  ): t.TEventResponse {
     try {
       const { canBetAgain, data } = game.placeBet(bet);
 
-      if (canBetAgain) return { type: 'BET_WIN', data };
+      if (canBetAgain) return { type: "BET_WIN", data };
 
-      return { type: 'BET_LOSE', data };
+      return { type: "BET_LOSE", data };
     } catch (e) {
-      log(e, 'FgRed');
+      log(e, "FgRed");
       return {
-        type: 'PLACE_BET_ERROR',
+        type: "PLACE_BET_ERROR",
         data: { errorCode: t.EErrors.PLACE_BET_ERROR },
       };
     }
@@ -44,13 +49,13 @@ export class Events {
     try {
       const { canBetAgain, data } = game.newPlaceBet();
 
-      if (canBetAgain) return { type: 'EXTRA_ROW_ACCEPTED', data };
+      if (canBetAgain) return { type: "EXTRA_ROW_ACCEPTED", data };
 
-      return { type: 'BET_LOSE', data };
+      return { type: "BET_LOSE", data };
     } catch (e) {
-      log(e, 'FgRed');
+      log(e, "FgRed");
       return {
-        type: 'EXTRA_ROW_ERROR',
+        type: "EXTRA_ROW_ERROR",
         data: { errorCode: t.EErrors.EXTRA_ROW_ERROR },
       };
     }
@@ -61,33 +66,13 @@ export class Events {
       const { data } = game.cashout();
 
       return {
-        type: 'CASHOUT_ACCEPTED',
+        type: "CASHOUT_ACCEPTED",
         data,
       };
     } catch (e) {
       return {
-        type: 'CASHOUT_ERROR',
+        type: "CASHOUT_ERROR",
         data: { errorCode: t.EErrors.CASHOUT_ERROR },
-      };
-    }
-  }
-
-  private static history(
-    game: Game,
-    data: { type: 'today' | 'old' },
-  ): t.TEventResponse {
-    try {
-      return {
-        type: 'HISTORY',
-        data: {
-          type: data.type,
-          history: dataHistory,
-        },
-      };
-    } catch (e) {
-      return {
-        type: 'GET_HISTORY_ERROR',
-        data: { errorCode: t.EErrors.GET_HISTORY_ERROR },
       };
     }
   }
@@ -95,15 +80,14 @@ export class Events {
   public static async callEvent(
     game: Game,
     type: string,
-    data?: any,
+    data?: any
   ): Promise<t.TEventResponse> {
-    if (type === 'CONNECT') return this.connect(game, data);
-    if (type === 'PLACE_BET') return this.placeBet(game, data);
-    if (type === 'EXTRA_ROW') return this.extraRow(game);
-    if (type === 'CASHOUT') return this.cashout(game);
-    if (type === 'GET_HISTORY') return this.history(game, data);
+    if (type === "CONNECT") return this.connect(game, data);
+    if (type === "PLACE_BET") return this.placeBet(game, data);
+    if (type === "EXTRA_ROW") return this.extraRow(game);
+    if (type === "CASHOUT") return this.cashout(game);
 
-    console.error('Event not found');
+    console.error("Event not found");
 
     return null;
   }

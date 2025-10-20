@@ -4,7 +4,8 @@
   "main": "build.js",
   "type": "commonjs",
   "scripts": {
-    "build": "tsc && node build.js",
+    "build": "tsc",
+    "start": "node dist/js/index.js",
     "dev": "tsx watch --env-file=./../../.env src/index.ts"
   },
   "author": "",

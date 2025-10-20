@@ -1,11 +1,9 @@
-import { Player } from './Player.js';
-import { Round } from './Round.js';
+import { Player } from "./Player.js";
+import { Round } from "./Round.js";
 
-import { CandyRowsController } from '../controllers/CandyRowsController.js';
+import { CandyRowsController } from "../controllers/CandyRowsController.js";
 
-import { dataHistory } from '../data/index.js';
-
-import { TConnectArgs } from '../events/types.js';
+import { TConnectArgs } from "../events/types.js";
 
 export class Game {
   private player: Player;
@@ -22,7 +20,7 @@ export class Game {
     this.candyRowsController.reset();
 
     return {
-      currencyIsoCode: 'BRL',
+      currencyIsoCode: "BRL",
       player: {
         id: this.player.id,
         balance: this.player.getBalance(),
@@ -83,9 +81,5 @@ export class Game {
         },
       },
     };
-  }
-
-  public history() {
-    return dataHistory;
   }
 }
