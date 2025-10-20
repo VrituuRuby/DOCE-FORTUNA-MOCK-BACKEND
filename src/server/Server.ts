@@ -5,7 +5,7 @@ import { Events } from "../events/Events.js";
 
 import { log } from "../utils.js";
 
-const port = process.env.port || 8080;
+const port = process.env.PORT || 8080;
 const server = new WebSocketServer({ port, host: "0.0.0.0" });
 
 export class Server {
