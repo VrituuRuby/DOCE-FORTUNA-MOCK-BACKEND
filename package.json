@@ -12,11 +12,10 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "typescript": "^5.9.3",
-    "tsx": "^4.16.5"
+    "tsx": "^4.16.5",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@types/node": "20.11.30",
     "ws": "^8.18.0"
   },
   "engines": {
