@@ -12,13 +12,13 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@types/node": "^22.1.0",
+    "@types/node": "^22.18.11",
     "esbuild": "^0.23.0",
     "terser": "^5.31.3",
+    "tsc": "^2.0.4",
     "tsx": "^4.16.5"
   },
   "dependencies": {
-    "tsc": "^2.0.4",
     "typescript": "^5.5.4",
     "ws": "^8.18.0"
   },
