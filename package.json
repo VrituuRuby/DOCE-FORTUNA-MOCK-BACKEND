@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/js/index.js",
-    "dev": "tsx watch --env-file=./../../.env src/index.ts"
+    "dev": "tsx watch src/index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -16,14 +16,14 @@
     "esbuild": "^0.23.0",
     "terser": "^5.31.3",
     "tsc": "^2.0.4",
-    "tsx": "^4.16.5"
+    "tsx": "^4.16.5",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "typescript": "^5.5.4",
     "ws": "^8.18.0"
   },
   "engines": {
-    "node": ">=20.11.1",
+    "node": "20.x",
     "npm": ">=10.5.2"
   }
 }
