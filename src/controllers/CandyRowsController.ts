@@ -1,6 +1,6 @@
-import { Candy } from '../game/Candy';
-import { CandyRow } from '../game/CandyRow';
-import { Round } from '../game/Round';
+import { Candy } from "../game/Candy";
+import { CandyRow } from "../game/CandyRow";
+import { Round } from "../game/Round";
 
 export class CandyRowsController {
   private currentRowIndex = -1;
@@ -9,18 +9,18 @@ export class CandyRowsController {
 
   public revealRow(round: Round) {
     this.currentRowIndex++;
-    // const candies = new CandyRow().revealCandies(this.currentRowIndex);
-    const candies = [
-      {
-        name: this._fortuneCandy.name,
-      },
-      {
-        name: this._fortuneCandy.name,
-      },
-      {
-        name: this._fortuneCandy.name,
-      },
-    ];
+    const candies = new CandyRow().revealCandies(this.currentRowIndex);
+    // const candies = [
+    //   {
+    //     name: this._fortuneCandy.name,
+    //   },
+    //   {
+    //     name: this._fortuneCandy.name,
+    //   },
+    //   {
+    //     name: this._fortuneCandy.name,
+    //   },
+    // ];
     const isWin = this.checkWin(candies);
     if (isWin) {
       const win = round.bet * this._multipliers[this.currentRowIndex];
@@ -43,7 +43,7 @@ export class CandyRowsController {
     this.currentRowIndex++;
     const candies = new CandyRow().revealCandies(this.currentRowIndex);
     const candyName = candies[0].name;
-    if (candies.every(candy => candy.name === candyName)) {
+    if (candies.every((candy) => candy.name === candyName)) {
       const win = round.bet * this._multipliers[this.currentRowIndex];
       round.win = win;
       this._fortuneCandy = new Candy(candyName);
@@ -64,8 +64,8 @@ export class CandyRowsController {
   }
 
   private checkWin(candies: Candy[]) {
-    if (!this._fortuneCandy) throw new Error('Sem doce da sorte definido');
-    return candies.some(candy => candy.name === this._fortuneCandy.name);
+    if (!this._fortuneCandy) throw new Error("Sem doce da sorte definido");
+    return candies.some((candy) => candy.name === this._fortuneCandy.name);
   }
 
   public checkIsFinished() {
