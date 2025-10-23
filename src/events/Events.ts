@@ -12,8 +12,10 @@ export class Events {
       return {
         type: "CONFIG",
         data: {
+          countryCode: "BR",
           currencyIsoCode: data.currencyIsoCode,
           player: data.player,
+          jurisdictionCode: "BR",
           validBets: data.validBets,
         },
       };
