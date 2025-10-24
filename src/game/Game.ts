@@ -69,6 +69,7 @@ export class Game {
   public cashout() {
     const win = this.round.win;
     this.candyRowsController.reset();
+    this.player.updateBalance(win, "add");
 
     return {
       data: {
