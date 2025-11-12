@@ -9,18 +9,18 @@ export class CandyRowsController {
 
   public revealRow(round: Round) {
     this.currentRowIndex++;
-    const candies = new CandyRow().revealCandies(this.currentRowIndex);
-    // const candies = [
-    //   {
-    //     name: this._fortuneCandy.name,
-    //   },
-    //   {
-    //     name: this._fortuneCandy.name,
-    //   },
-    //   {
-    //     name: this._fortuneCandy.name,
-    //   },
-    // ];
+    // const candies = new CandyRow().revealCandies(this.currentRowIndex);
+    const candies = [
+      {
+        name: this._fortuneCandy.name,
+      },
+      {
+        name: this._fortuneCandy.name,
+      },
+      {
+        name: this._fortuneCandy.name,
+      },
+    ];
     const isWin = this.checkWin(candies);
     if (isWin) {
       const win = round.bet * this._multipliers[this.currentRowIndex];
