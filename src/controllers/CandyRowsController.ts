@@ -5,7 +5,7 @@ import { Round } from "../game/Round";
 export class CandyRowsController {
   private currentRowIndex = -1;
   private _fortuneCandy: Candy | null = null;
-  private _multipliers = [1.2, 2, 3.5, 6, 12, 25, 60, 150, 400, 1200];
+  private _multipliers = [1.2, 2, 3.5, 7, 15, 30, 70, 150, 300, 800];
 
   public revealRow(round: Round) {
     this.currentRowIndex++;
